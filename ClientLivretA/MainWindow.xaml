@@ -1,0 +1,30 @@
+﻿<Window x:Class="ClientLivretA.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <TextBlock Margin="25,25,25,0">
+                <Label Content="Années" Width="100" />
+                <TextBox Name="nbAnnees" Width="90" Margin="30,0,0,0" TextChanged="data_TextChanged" Padding="5"  />
+            </TextBlock>
+            <TextBlock Margin="25,50,25,0">
+                <Label Content="Somme initiale" Width="100" />
+                <TextBox Name="sommeInitiale" Width="90" Margin="30,0,0,0" TextChanged="data_TextChanged" Padding="5" />
+            </TextBlock>
+            <TextBlock Margin="25,50,25,0">
+                <Label Content="Somme finale" Width="100" />
+                <TextBox Name="sommeFinale" Width="90" Margin="30,0,0,0" Padding="5" />
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button Name="btnValider" Content="Calculer" Margin="0,0,50,0" Padding="5" Width="70" Click="btnValider_Click" IsEnabled="False" />
+            <Button Name="btnQuitter" Content="Quitter" Margin="50,0,0,0" Padding="5" Width="70" Click="btnQuitter_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
