@@ -35,7 +35,7 @@ namespace ClientLivretA
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
             // Adresse du serveur à joindre
-            IPAddress ip_addressServer = IPAddress.Loopback;
+            IPAddress ip_addressServer = IPAddress.Parse("127.0.0.1");
             int i_userAnnee;
             double d_userSommeInit;
             byte[] b_userAnnee, b_userSommeInit, b_serverSomFinalCalc = new byte[8];
