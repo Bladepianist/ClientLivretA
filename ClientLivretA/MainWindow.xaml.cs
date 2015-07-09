@@ -35,10 +35,11 @@ namespace ClientLivretA
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
             // Adresse du serveur à joindre
-            IPAddress ip_addressServer = IPAddress.Parse("192.168.211.54");
+            IPAddress ip_addressServer = IPAddress.Loopback;
             int i_userAnnee;
             double d_userSommeInit;
             byte[] b_userAnnee, b_userSommeInit, b_serverSomFinalCalc = new byte[8];
+            Socket sock = null;
 
             try
             {
@@ -50,7 +51,7 @@ namespace ClientLivretA
                 b_userSommeInit = BitConverter.GetBytes(d_userSommeInit);
 
                 // Création de la socket
-                Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                 // Connexion au serveur
                 sock.Connect(ip_addressServer, 1212);
@@ -61,15 +62,17 @@ namespace ClientLivretA
                 sock.Send(b_userAnnee);
                 sock.Send(b_userSommeInit);
                 sock.Receive(b_serverSomFinalCalc);
-
-                // Fermeture de la connexion
-                sock.Shutdown(SocketShutdown.Both);
-                sock.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return;
+            }
+            finally
+            {
+                // Fermeture de la connexion
+                sock.Shutdown(SocketShutdown.Both);
+                sock.Close();
             }
 
             
